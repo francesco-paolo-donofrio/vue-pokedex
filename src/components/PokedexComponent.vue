@@ -49,5 +49,6 @@ export default {
     border: 2px solid black;
     position: relative;
     top: 20px;
+    clip-path: polygon(0 0, 20% 0%, 40% 10%, 100% 10%, 100% 100%, 0 100%);
 }
 </style>
