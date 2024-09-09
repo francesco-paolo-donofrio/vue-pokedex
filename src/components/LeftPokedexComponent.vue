@@ -1,10 +1,11 @@
 <template>
     <div>
-        
+        Ciao sono franc
     </div>
 </template>
 
 <script>
+import { store } from '../store.js'
 export default {
     name: 'LeftPokedexComponent',
 
