@@ -1,23 +1,18 @@
 <template>
   <div class="main-container">
     <div>
-      <LeftPokedexComponent />
-    </div>
-    <div>
-      <RightPokedexComponent />
+      <PokedexComponent />
     </div>
   </div>
 </template>
 
 <script>
 import { store } from './store.js'
-import LeftPokedexComponent from './components/LeftPokedexComponent.vue'
-import RightPokedexComponent from './components/RightPokedexComponent.vue';
+import PokedexComponent from './components/PokedexComponent.vue'
 export default {
   name: 'App',
   components: {
-    LeftPokedexComponent,
-    RightPokedexComponent
+    PokedexComponent,
   },
   data() {
     store
@@ -27,6 +22,7 @@ export default {
 
 <style lang="scss" scoped>
   .main-container {
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
