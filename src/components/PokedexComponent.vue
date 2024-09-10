@@ -5,6 +5,23 @@
                 <div class="f-d-smashed-rectangle">
                     <div class="f-d-circle">
                         <div class="f-d-small-circle">
+                            <div class="f-d-deep-small-circle">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-d-colorated-circles red">
+                        <div class="f-d-colorated-circles-circle">
+
+                        </div>
+                    </div>
+                    <div class="f-d-colorated-circles yellow">
+                        <div class="f-d-colorated-circles-circle">
+
+                        </div>
+                    </div>
+                    <div class="f-d-colorated-circles green">
+                        <div class="f-d-colorated-circles-circle">
 
                         </div>
                     </div>
@@ -70,13 +87,15 @@ export default {
 .f-d-smashed-rectangle {
     height: 150px;
     width: 95%;
-    background-color: green;
+    background-color: orange;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 5px;
     clip-path: polygon(0 0, 0 100%, 30% 100%, 70% 20%, 100% 20%, 100% 0);
     // formula per smorzare i bordi del clip path polygon da vedere bene
     // clip-path: inset(30% 100%, 70% 20% round 50%)
     border: 3px solid #D41246;
+    display: flex;
+    align-items: start;
 }
 
 .f-d-circle {
@@ -84,7 +103,7 @@ export default {
     width: 135px;
     border-radius: 50%;
     border: 3px solid black;
-    background-color: yellow;
+    background-color: white;
     margin-left: 10px;
     display: flex;
     align-items: start;
@@ -97,17 +116,51 @@ export default {
     width: 100px;
     border-radius: 50%;
     border: 3px solid black;
-    background-color: blue;
+    background-color: rgb(12, 182, 214);
+    position: absolute;
 }
 
-// .f-d-smashed-rectangle-shadow {
-//     height: 20px;
-//     width: 95%;
-//     background-color: orange;
-//     border-top-left-radius: 5px;
-//     border-bottom-left-radius: 5px;
-//     clip-path: polygon(0 0, 0 100%, 30% 100%, -10% -100%, 100% 20%, 100% 0);
-// }
+.f-d-deep-small-circle {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgb(204, 221, 224);
+    clip-path: circle(50% at 50% 50%);
+    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.5));
+    position: relative;
+    top: 10px;
+    left: 25px;
+}
+
+.f-d-colorated-circles {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: rgb(12, 182, 214);
+    margin: 10px;
+}
+
+.f-d-colorated-circles-circle {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: rgb(206, 206, 7);
+}
+
+.green {
+    background-color: green;
+}
 
 .f-d-flex-right {
     display: flex;
