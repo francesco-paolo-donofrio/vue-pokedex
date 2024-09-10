@@ -10,8 +10,10 @@
                     </div>
                 </div>
             </div>
-            <div class="f-d-smashed-rectangle-shadow">
+            <div class="f-d-flex-right">
+                <div class="f-d-smashed-rectangle-shadow">
 
+                </div>
             </div>
         </div>
         <div class="pokedex-border-side-right">
@@ -37,7 +39,7 @@ export default {
 .pokedex-border-side-left {
     height: 800px;
     width: 600px;
-    background-color: red;
+    background-color: #D41246;
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
     border-top-right-radius: 5px;
@@ -55,7 +57,7 @@ export default {
 .pokedex-border-side-right {
     height: 730px;
     width: 500px;
-    background-color: red;
+    background-color: #D41246;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 40px;
     border: 2px solid black;
@@ -74,6 +76,7 @@ export default {
     clip-path: polygon(0 0, 0 100%, 30% 100%, 70% 20%, 100% 20%, 100% 0);
     // formula per smorzare i bordi del clip path polygon da vedere bene
     // clip-path: inset(30% 100%, 70% 20% round 50%)
+    border: 3px solid #D41246;
 }
 
 .f-d-circle {
@@ -97,14 +100,14 @@ export default {
     background-color: blue;
 }
 
-.f-d-smashed-rectangle-shadow {
-    height: 20px;
-    width: 95%;
-    background-color: orange;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 5px;
-    clip-path: polygon(0 0, 0 100%, 30% 100%, 70% 20%, 100% 20%, 100% 0);
-}
+// .f-d-smashed-rectangle-shadow {
+//     height: 20px;
+//     width: 95%;
+//     background-color: orange;
+//     border-top-left-radius: 5px;
+//     border-bottom-left-radius: 5px;
+//     clip-path: polygon(0 0, 0 100%, 30% 100%, -10% -100%, 100% 20%, 100% 0);
+// }
 
 .f-d-flex-right {
     display: flex;
