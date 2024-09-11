@@ -49,11 +49,19 @@
             </div>
             <div class="f-d-bottom-main-container">
                 <div class="f-d-65-container">
-                    <div class="f-d-40-height"></div>
+                    <div class="f-d-40-height">
+                        <div class="f-d-circle-black">
+                            <div class="f-d-circle-black-absolute"></div>
+                        </div>
+                        <div class="f-d-orizzontal-bars red"></div>
+                        <div class="f-d-orizzontal-bars blue"></div>
+                    </div>
                     <div class="f-d-60-height"></div>
                 </div>
                 <div class="f-d-35-container">
-                    <div class="f-d-cross-polygon"></div>
+                    <div class="f-d-cross-polygon">
+                        <div class="f-d-cross-circle"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,7 +125,6 @@ export default {
     clip-path: polygon(0 0, 0 100%, 30% 100%, 70% 20%, 100% 20%, 100% 0);
     // formula per smorzare i bordi del clip path polygon da vedere bene
     // clip-path: inset(30% 100%, 70% 20% round 50%)
-    border: 3px solid #D41246;
     display: flex;
     align-items: start;
 }
@@ -160,6 +167,7 @@ export default {
     height: 30px;
     width: 30px;
     border-radius: 50%;
+    border: 3px solid black;
     background-color: rgb(12, 182, 214);
     margin: 10px;
 }
@@ -184,6 +192,10 @@ export default {
 
 .green {
     background-color: green;
+}
+
+.blue {
+    background-color: blue;
 }
 
 .f-d-flex-right {
@@ -280,6 +292,7 @@ export default {
     justify-content: center;
     align-items: center;
     height: 160px;
+    padding-left: 20px;
 }
 
 .f-d-65-container {
@@ -288,5 +301,73 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.f-d-35-container {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-d-40-height {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.f-d-60-height {
+    height: 60%;
+    width: 100%;
+}
+
+.f-d-circle-black {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: black;
+    position: relative;
+}
+
+.f-d-circle-black-absolute {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgb(63, 59, 59);
+    top: 5px;
+    left: 15px;
+}
+
+.f-d-orizzontal-bars {
+    width: 100px;
+    height: 20px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.f-d-cross-polygon {
+    width: 80%;
+    height: 80%;
+    background-color: rgb(63, 59, 59);
+    border: 3px solid black;
+    clip-path: polygon(38% 0, 40% 40%, 0% 38%, 0% 62%, 40% 60%, 38% 100%, 62% 100%, 60% 60%, 100% 62%, 100% 38%, 60% 40%, 62% 0%, 38% 0%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(40px 40px 40px rgb(0, 0, 0));
+}
+
+.f-d-cross-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(63, 59, 59);
+    border: 3px solid black;
+    clip-path: circle(50% at 50% 50%);
 }
 </style>
