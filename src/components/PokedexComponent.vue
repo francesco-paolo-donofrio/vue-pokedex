@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="f-d-flex-center">
+            <div class="f-d-main-rectangle-border-relative">
                 <div class="f-d-main-rectangle">
                     <div class="f-d-flex">
                         <div class="f-d-smaller-circle"></div>
@@ -46,6 +46,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="f-d-main-rectangle-border">
+
+                </div>
             </div>
             <div class="f-d-bottom-main-container">
                 <div class="f-d-65-container">
@@ -56,7 +59,9 @@
                         <div class="f-d-orizzontal-bars red"></div>
                         <div class="f-d-orizzontal-bars blue"></div>
                     </div>
-                    <div class="f-d-60-height"></div>
+                    <div class="f-d-60-height">
+                        <div class="f-d-green-rectangle"></div>
+                    </div>
                 </div>
                 <div class="f-d-35-container">
                     <div class="f-d-cross-polygon">
@@ -119,7 +124,6 @@ export default {
 .f-d-smashed-rectangle {
     height: 150px;
     width: 95%;
-    background-color: orange;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 5px;
     clip-path: polygon(0 0, 0 100%, 30% 100%, 70% 20%, 100% 20%, 100% 0);
@@ -136,6 +140,7 @@ export default {
     border: 3px solid black;
     background-color: white;
     margin-left: 10px;
+    margin-top: 10px;
     display: flex;
     align-items: start;
     justify-content: end;
@@ -201,6 +206,7 @@ export default {
 .f-d-flex-right {
     display: flex;
     justify-content: end;
+    position: relative;
 }
 
 .f-d-flex-center {
@@ -252,6 +258,13 @@ export default {
     z-index: -1;
 }
 
+.f-d-main-rectangle-border-relative {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .f-d-animated-rectangle {
     height: 300px;
     width: 80%;
@@ -292,11 +305,12 @@ export default {
     justify-content: center;
     align-items: center;
     height: 160px;
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 .f-d-65-container {
     width: 65%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -321,8 +335,21 @@ export default {
 }
 
 .f-d-60-height {
-    height: 60%;
+    height: 50%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.f-d-green-rectangle {
+    width: 50%;
+    height: 100%;
+    border: 3px solid black;
+    background-color: rgb(98, 198, 134);
+    border-radius: 10px;
+    margin-left: 60px;
+    margin-top: 30px;
 }
 
 .f-d-circle-black {
@@ -370,4 +397,5 @@ export default {
     border: 3px solid black;
     clip-path: circle(50% at 50% 50%);
 }
+
 </style>
