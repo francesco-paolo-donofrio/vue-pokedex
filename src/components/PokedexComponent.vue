@@ -6,7 +6,7 @@
                     <div class="f-d-circle">
                         <div class="f-d-small-circle">
                             <div class="f-d-deep-small-circle">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -27,9 +27,24 @@
                     </div>
                 </div>
             </div>
-            <div class="f-d-flex-right">
-                <div class="f-d-smashed-rectangle-shadow">
+            <div class="f-d-flex-center">
+                <div class="f-d-main-rectangle">
+                    <div class="f-d-flex">
+                        <div class="f-d-smaller-circle"></div>
+                        <div class="f-d-smaller-circle"></div>
+                    </div>
+                    <div class="f-d-animated-rectangle">
 
+                    </div>
+                    <div class="f-d-flex">
+                        <div class="f-d-animated-circle"></div>
+                        <div>
+                            <div class="f-d-black-bars"></div>
+                            <div class="f-d-black-bars"></div>
+                            <div class="f-d-black-bars"></div>
+                            <div class="f-d-black-bars"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,7 +96,7 @@ export default {
     position: relative;
     top: 20px;
     //con clip-path andiamo a specificare la forma irregolare del pokedex andando a specificare perogni punto l'inclinazione voluta
-    clip-path: polygon(0 0, 20% 0%, 40% 10%, 100% 10%, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 30% 0%, 70% 15%, 100% 15%, 100% 100%, 0 100%);
 }
 
 .f-d-smashed-rectangle {
@@ -133,8 +148,8 @@ export default {
 }
 
 .f-d-colorated-circles {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
     background-color: rgb(12, 182, 214);
     margin: 10px;
@@ -146,8 +161,8 @@ export default {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.5);
     position: relative;
-    top: 2px;
-    left: 2px;
+    top: 5px;
+    left: 5px;
 }
 
 .red {
@@ -165,5 +180,89 @@ export default {
 .f-d-flex-right {
     display: flex;
     justify-content: end;
+}
+
+.f-d-flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.f-d-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.f-d-flex-between {
+    display: flex;
+    justify-content: space-around;
+}
+
+.f-d-main-rectangle {
+    height: 400px;
+    width: 85%;
+    background-color: white;
+    margin-top: 50px;
+    border: 3px solid black;
+    clip-path: polygon(0 0, 0 80%, 20% 100%, 80% 100%, 100% 100%, 100% 0);
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-d-main-rectangle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border: 6px solid black;
+    clip-path: polygon(0 0, 0 80%, 20% 100%, 80% 100%, 100% 100%, 100% 0);
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    z-index: -1;
+}
+
+.f-d-animated-rectangle {
+    height: 300px;
+    width: 80%;
+    border: 3px solid black;
+    background-color: aqua;
+    border-radius: 20px;
+}
+
+.f-d-black-bars {
+    width: 100px;
+    height: 5px;
+    background-color: black;
+    margin: 10px;
+}
+
+.f-d-smaller-circle {
+    height: 15px;
+    width: 15px;
+    border: 3px solid black;
+    border-radius: 50%;
+    background-color: #D41246;
+    margin: 10px;
+}
+
+.f-d-animated-circle {
+    height: 40px;
+    width: 40px;
+    border: 3px solid black;
+    border-radius: 50%;
+    background-color: #D41246;
+    margin-right: 150px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 </style>
