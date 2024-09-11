@@ -47,6 +47,15 @@
                     </div>
                 </div>
             </div>
+            <div class="f-d-bottom-main-container">
+                <div class="f-d-65-container">
+                    <div class="f-d-40-height"></div>
+                    <div class="f-d-60-height"></div>
+                </div>
+                <div class="f-d-35-container">
+                    <div class="f-d-cross-polygon"></div>
+                </div>
+            </div>
         </div>
         <div class="pokedex-border-side-right">
         </div>
@@ -264,5 +273,20 @@ export default {
     margin-right: 150px;
     margin-top: 10px;
     cursor: pointer;
+}
+
+.f-d-bottom-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+}
+
+.f-d-65-container {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 </style>
