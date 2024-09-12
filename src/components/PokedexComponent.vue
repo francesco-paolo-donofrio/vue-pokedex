@@ -35,8 +35,8 @@
                             <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
                         </button>
                         <div class="f-d-remove-button">
-                        Remove
-                    </div>
+                            Remove
+                        </div>
                     </div>
                 </div>
                 <div class="f-d-flex">
@@ -84,6 +84,19 @@
             </div>
         </div>
         <div class="pokedex-border-side-right">
+            <div class="f-d-great-rectangle"></div>
+            <div class="f-d-grid-container">
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -103,6 +116,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Left side of the pokedex
+
 .pokedex-border-side-left {
     height: 800px;
     width: 600px;
@@ -121,23 +136,11 @@ export default {
     position: relative;
 }
 
-.pokedex-border-side-right {
-    height: 730px;
-    width: 500px;
-    background-color: #D41246;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 40px;
-    border: 2px solid black;
-    position: relative;
-    top: 20px;
-    //con clip-path andiamo a specificare la forma irregolare del pokedex andando a specificare perogni punto l'inclinazione voluta
-    clip-path: polygon(0 0, 30% 0%, 70% 15%, 100% 15%, 100% 100%, 0 100%);
-}
-
 .f-d-smashed-rectangle {
     height: 150px;
-    width: 95%;
+    width: 100%;
     border-top-left-radius: 30px;
+    background-color: #740a26;
     border-bottom-left-radius: 5px;
     clip-path: polygon(0 0, 0 100%, 30% 100%, 70% 20%, 100% 20%, 100% 0);
     // formula per smorzare i bordi del clip path polygon da vedere bene
@@ -315,7 +318,6 @@ export default {
     justify-content: center;
     align-items: center;
     height: 160px;
-    padding-left: 40px;
 }
 
 .f-d-65-container {
@@ -329,10 +331,13 @@ export default {
 
 .f-d-35-container {
     width: 35%;
-    height: 100%;
+    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #740a26;
+    border: 3px solid black;
+    margin-right: 20px;
 }
 
 .f-d-40-height {
@@ -421,7 +426,7 @@ export default {
     width: 100%;
     padding: 10px;
     padding-right: 40px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 25px;
     outline: none;
     font-size: 15px;
@@ -445,9 +450,10 @@ export default {
     background-color: white;
     border: none;
     cursor: pointer;
+    border: 1px solid black;
     width: 150px;
-    height: 50px;
-    border-radius: 15px;
+    height: 45px;
+    border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -460,4 +466,49 @@ export default {
     }
 }
 
-//////////////////</style>
+//////////////////
+
+// Right side of the pokedex
+
+.pokedex-border-side-right {
+    height: 730px;
+    width: 500px;
+    background-color: #D41246;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 40px;
+    border: 2px solid black;
+    position: relative;
+    top: 20px;
+    //con clip-path andiamo a specificare la forma irregolare del pokedex andando a specificare perogni punto l'inclinazione voluta
+    clip-path: polygon(0 0, 30% 0%, 70% 15%, 100% 15%, 100% 100%, 0 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-d-great-rectangle {
+    width: 80%;
+    height: 40%;
+    background-color: green;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.f-d-grid-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.f-d-grid-item {
+    border: 1px solid black;
+    background-color: aqua;
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+}
+</style>
