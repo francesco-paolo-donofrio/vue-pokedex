@@ -29,11 +29,14 @@
             </div>
             <div class="f-d-main-rectangle-border-relative">
                 <div>
-                    <div class="search-container f-d-flex-around">
-                        <input type="text" class="search-input" placeholder="Search...">
-                        <button class="search-button">
+                    <div class="f-d-search-container f-d-flex-between">
+                        <input type="text" class="f-d-search-input" placeholder="Search...">
+                        <button class="f-d-search-button">
                             <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
                         </button>
+                        <div class="f-d-remove-button">
+                        Remove
+                    </div>
                     </div>
                 </div>
                 <div class="f-d-flex">
@@ -229,9 +232,9 @@ export default {
     justify-content: center;
 }
 
-.f-d-flex-around {
+.f-d-flex-between {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .f-d-main-rectangle {
@@ -350,13 +353,12 @@ export default {
 }
 
 .f-d-green-rectangle {
-    width: 50%;
+    width: 70%;
     height: 100%;
     border: 3px solid black;
     background-color: rgb(98, 198, 134);
     border-radius: 10px;
-    margin-left: 60px;
-    margin-top: 30px;
+    margin-left: 100px;
 }
 
 .f-d-circle-black {
@@ -404,4 +406,58 @@ export default {
     border: 3px solid black;
     clip-path: circle(50% at 50% 50%);
 }
-</style>
+
+// Input style
+
+.f-d-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: 20px auto;
+}
+
+.f-d-search-input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.f-d-search-button {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    right: 35px;
+    cursor: pointer;
+}
+
+.f-d-search-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.f-d-remove-button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.336);
+        color: white;
+    }
+}
+
+//////////////////</style>
