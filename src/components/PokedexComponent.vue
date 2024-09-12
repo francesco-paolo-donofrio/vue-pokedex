@@ -28,21 +28,31 @@
                 </div>
             </div>
             <div class="f-d-main-rectangle-border-relative">
-                <div class="f-d-main-rectangle">
-                    <div class="f-d-flex">
-                        <div class="f-d-smaller-circle"></div>
-                        <div class="f-d-smaller-circle"></div>
+                <div>
+                    <div class="search-container f-d-flex-around">
+                        <input type="text" class="search-input" placeholder="Search...">
+                        <button class="search-button">
+                            <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
+                        </button>
                     </div>
-                    <div class="f-d-animated-rectangle">
+                </div>
+                <div class="f-d-flex">
+                    <div class="f-d-main-rectangle">
+                        <div class="f-d-flex">
+                            <div class="f-d-smaller-circle"></div>
+                            <div class="f-d-smaller-circle"></div>
+                        </div>
+                        <div class="f-d-animated-rectangle">
 
-                    </div>
-                    <div class="f-d-flex">
-                        <div class="f-d-animated-circle"></div>
-                        <div>
-                            <div class="f-d-black-bars"></div>
-                            <div class="f-d-black-bars"></div>
-                            <div class="f-d-black-bars"></div>
-                            <div class="f-d-black-bars"></div>
+                        </div>
+                        <div class="f-d-flex">
+                            <div class="f-d-animated-circle"></div>
+                            <div>
+                                <div class="f-d-black-bars"></div>
+                                <div class="f-d-black-bars"></div>
+                                <div class="f-d-black-bars"></div>
+                                <div class="f-d-black-bars"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -219,7 +229,7 @@ export default {
     justify-content: center;
 }
 
-.f-d-flex-between {
+.f-d-flex-around {
     display: flex;
     justify-content: space-around;
 }
@@ -228,7 +238,6 @@ export default {
     height: 400px;
     width: 85%;
     background-color: white;
-    margin-top: 50px;
     border: 3px solid black;
     clip-path: polygon(0 0, 0 80%, 20% 100%, 80% 100%, 100% 100%, 100% 0);
     border-top-left-radius: 20px;
@@ -260,9 +269,7 @@ export default {
 
 .f-d-main-rectangle-border-relative {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 }
 
 .f-d-animated-rectangle {
@@ -397,5 +404,4 @@ export default {
     border: 3px solid black;
     clip-path: circle(50% at 50% 50%);
 }
-
 </style>
