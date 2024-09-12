@@ -266,7 +266,7 @@ export default {
 }
 
 .f-d-main-rectangle {
-    height: 400px;
+    height: 350px;
     width: 85%;
     background-color: white;
     border: 3px solid black;
@@ -274,6 +274,7 @@ export default {
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
+    margin-bottom: 20px;
     position: relative;
     z-index: 1;
     display: flex;
@@ -402,7 +403,7 @@ export default {
 }
 
 .f-d-green-rectangle {
-    width: 70%;
+    width: 60%;
     height: 100%;
     border: 3px solid black;
     background-color: rgb(98, 198, 134);
