@@ -84,6 +84,7 @@
             </div>
         </div>
         <div class="pokedex-border-side-right">
+            <div>ciao</div>
             <div class="f-d-great-rectangle green mt-5"></div>
             <div class="f-d-grid-container">
                 <div class="f-d-grid-item aqua"></div>
@@ -97,17 +98,19 @@
                 <div class="f-d-grid-item aqua"></div>
                 <div class="f-d-grid-item aqua"></div>
             </div>
-            <div class="f-d-flex">
+            <div class="f-d-master-container-white">
                 <div class="f-d-grid-container-white">
                     <div class="f-d-grid-item white"></div>
                     <div class="f-d-grid-item white"></div>
                 </div>
-                <div>
+                <div class="f-d-grid-container-50">
                     <div class="d-flex">
-                        <div class="f-d-orizzontal-bars green align-items-end"></div>
+                        <div class="f-d-orizzontal-bars green"></div>
                         <div class="f-d-orizzontal-bars green"></div>
                     </div>
-                    <div class="f-d-animated-circle-yellow"></div>
+                    <div class="f-d-animated-circle-yellow">
+                        <div class="f-d-animated-circle-yellow-shadow"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -341,9 +344,19 @@ export default {
     border: 3px solid black;
     border-radius: 50%;
     background-color: rgb(206, 206, 7);
-    margin-right: 150px;
-    margin-top: 10px;
     cursor: pointer;
+    align-self: end;
+    margin-right: 40px;
+}
+
+.f-d-animated-circle-yellow-shadow {
+    height: 15px;
+    width: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    position: relative;
+    top: 5px;
+    left: 5px;
 }
 
 .f-d-bottom-main-container {
@@ -368,8 +381,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #740a26;
-    border: 3px solid black;
     margin-right: 20px;
 }
 
@@ -459,7 +470,7 @@ export default {
     width: 100%;
     padding: 10px;
     padding-right: 40px;
-    border: 1px solid black;
+    border: 3px solid black;
     border-radius: 25px;
     outline: none;
     font-size: 15px;
@@ -483,7 +494,7 @@ export default {
     background-color: white;
     border: none;
     cursor: pointer;
-    border: 1px solid black;
+    border: 3px solid black;
     width: 150px;
     height: 45px;
     border-radius: 25px;
@@ -509,23 +520,22 @@ export default {
     background-color: #D41246;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 40px;
-    border: 2px solid black;
+    border: 3px solid black;
     position: relative;
     top: 20px;
     //con clip-path andiamo a specificare la forma irregolare del pokedex andando a specificare perogni punto l'inclinazione voluta
     clip-path: polygon(0 0, 30% 0%, 70% 15%, 100% 15%, 100% 100%, 0 100%);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
 .f-d-great-rectangle {
     width: 80%;
-    height: 40%;
+    height: 35%;
     border: 3px solid black;
     border-radius: 10px;
-    margin: 35px 0 35px 0;
 }
 
 .f-d-grid-container {
@@ -536,12 +546,27 @@ export default {
     flex-wrap: wrap;
 }
 
-.f-d-grid-container-white {
+.f-d-master-container-white {
     width: 100%;
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
+}
 
+.f-d-grid-container-white {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-d-grid-container-50 {
+    width: 50%;
+    height: 150px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 }
 
 .f-d-grid-item {
