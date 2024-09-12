@@ -84,18 +84,31 @@
             </div>
         </div>
         <div class="pokedex-border-side-right">
-            <div class="f-d-great-rectangle"></div>
+            <div class="f-d-great-rectangle green mt-5"></div>
             <div class="f-d-grid-container">
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
-                <div class="f-d-grid-item"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+                <div class="f-d-grid-item aqua"></div>
+            </div>
+            <div class="f-d-flex">
+                <div class="f-d-grid-container-white">
+                    <div class="f-d-grid-item white"></div>
+                    <div class="f-d-grid-item white"></div>
+                </div>
+                <div>
+                    <div class="d-flex">
+                        <div class="f-d-orizzontal-bars green align-items-end"></div>
+                        <div class="f-d-orizzontal-bars green"></div>
+                    </div>
+                    <div class="f-d-animated-circle-yellow"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -212,11 +225,19 @@ export default {
 }
 
 .green {
-    background-color: green;
+    background-color: rgb(9, 53, 50);
 }
 
 .blue {
     background-color: blue;
+}
+
+.white {
+    background-color: white;
+}
+
+.aqua {
+    background-color: aqua;
 }
 
 .f-d-flex-right {
@@ -238,6 +259,7 @@ export default {
 .f-d-flex-between {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .f-d-main-rectangle {
@@ -308,6 +330,17 @@ export default {
     border: 3px solid black;
     border-radius: 50%;
     background-color: #D41246;
+    margin-right: 150px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.f-d-animated-circle-yellow {
+    height: 40px;
+    width: 40px;
+    border: 3px solid black;
+    border-radius: 50%;
+    background-color: rgb(206, 206, 7);
     margin-right: 150px;
     margin-top: 10px;
     cursor: pointer;
@@ -490,10 +523,9 @@ export default {
 .f-d-great-rectangle {
     width: 80%;
     height: 40%;
-    background-color: green;
     border: 3px solid black;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin: 35px 0 35px 0;
 }
 
 .f-d-grid-container {
@@ -504,9 +536,16 @@ export default {
     flex-wrap: wrap;
 }
 
+.f-d-grid-container-white {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+
+}
+
 .f-d-grid-item {
     border: 1px solid black;
-    background-color: aqua;
     width: 70px;
     height: 70px;
     border-radius: 5px;
