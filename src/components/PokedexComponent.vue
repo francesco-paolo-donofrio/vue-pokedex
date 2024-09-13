@@ -85,7 +85,24 @@
         </div>
         <div class="pokedex-border-side-right">
             <div>ciao</div>
-            <div class="f-d-great-rectangle green mt-5"></div>
+            <div class="f-d-great-rectangle green mt-5">
+                <ul class="f-d-list-style">
+                    <li v-for="pokemon in pokemonDetails" :key="pokemon.name">
+                        <h2 class="f-d-text-title">{{ pokemon.name }}</h2>
+                        <p>Height: {{ pokemon.height }}</p>
+                        <p>Abilities:
+                            <span v-for="ability in pokemon.abilities" :key="ability.ability.name">
+                                {{ ability.ability.name }}
+                            </span>
+                        </p>
+                        <p>Type:
+                            <span v-for="type in pokemon.types" :key="type.type.name">
+                                {{ type.type.name }}
+                            </span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
             <div class="f-d-grid-container">
                 <div class="f-d-grid-item aqua"></div>
                 <div class="f-d-grid-item aqua"></div>
@@ -140,19 +157,19 @@ export default {
         async getPokemon() {
             try {
 
-            // Prima chiamata per ottenere i Pokémon
-        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
-        this.pokemonList = response.data.results;
+                // Prima chiamata per ottenere i Pokémon
+                const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
+                this.pokemonList = response.data.results;
 
-        // Seconda chiamata per ottenere i dettagli di ciascun Pokémon
-        const detailRequests = this.pokemonList.map(pokemon =>
-          axios.get(pokemon.url)
-        );
-        const details = await Promise.all(detailRequests);
-        this.pokemonDetails = details.map(res => res.data);  // Assegna i dati ottenuti dai dettagli
-      } catch (error) {
-        console.error('Errore nella chiamata API:', error);
-      }
+                // Seconda chiamata per ottenere i dettagli di ciascun Pokémon
+                const detailRequests = this.pokemonList.map(pokemon =>
+                    axios.get(pokemon.url)
+                );
+                const details = await Promise.all(detailRequests);
+                this.pokemonDetails = details.map(res => res.data);  // Assegna i dati ottenuti dai dettagli
+            } catch (error) {
+                console.error('Errore nella chiamata API:', error);
+            }
         },
     }
 }
@@ -567,6 +584,8 @@ export default {
     height: 35%;
     border: 3px solid black;
     border-radius: 10px;
+    overflow: auto;
+    color: white;
 }
 
 .f-d-grid-container {
@@ -605,5 +624,17 @@ export default {
     width: 70px;
     height: 70px;
     border-radius: 5px;
+}
+
+// Text styles
+
+.f-d-list-style {
+    list-style: none;
+}
+
+.f-d-text-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
 }
 </style>
