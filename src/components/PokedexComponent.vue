@@ -128,6 +128,7 @@ export default {
         return {
             store,
             pokemonList: [],
+            pokemonDetails: [],
         }
     },
 
@@ -138,11 +139,20 @@ export default {
     methods: {
         async getPokemon() {
             try {
-                const response = await axios.get('https://pokeapi.co/api/v2/pokemon?');
-                this.pokemonList = response.data.results;
-            } catch (error) {
-                console.error('Errore nella call API:', error);
-            }
+
+            // Prima chiamata per ottenere i Pokémon
+        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
+        this.pokemonList = response.data.results;
+
+        // Seconda chiamata per ottenere i dettagli di ciascun Pokémon
+        const detailRequests = this.pokemonList.map(pokemon =>
+          axios.get(pokemon.url)
+        );
+        const details = await Promise.all(detailRequests);
+        this.pokemonDetails = details.map(res => res.data);  // Assegna i dati ottenuti dai dettagli
+      } catch (error) {
+        console.error('Errore nella chiamata API:', error);
+      }
         },
     }
 }
