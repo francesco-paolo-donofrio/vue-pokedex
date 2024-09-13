@@ -46,7 +46,11 @@
                             <div class="f-d-smaller-circle"></div>
                         </div>
                         <div class="f-d-animated-rectangle">
-
+                            <div v-for="pokemon in pokemonDetails" :key="pokemon.name">
+                                <p v-for="sprite in pokemon.sprites" :key="sprite.sprite.front_default">
+                                    <img :src="sprite.sprite.front_default" :alt="pokemon.front_default">
+                                </p>
+                            </div>
                         </div>
                         <div class="f-d-flex">
                             <div class="f-d-animated-circle"></div>
@@ -89,17 +93,24 @@
                 <ul class="f-d-list-style">
                     <li v-for="pokemon in pokemonDetails" :key="pokemon.name">
                         <h2 class="f-d-text-title">{{ pokemon.name }}</h2>
-                        <p>Height: {{ pokemon.height }}</p>
-                        <p>Abilities:
-                            <span v-for="ability in pokemon.abilities" :key="ability.ability.name">
-                                {{ ability.ability.name }}
-                            </span>
-                        </p>
-                        <p>Type:
+                        <div class="f-d-flex-center">
+                            <p class="pe-3">Height:</p>
+                            <p>{{ pokemon.height }}</p>
+                        </div>
+                        <div class="f-d-flex-center">
+                            <p class="pe-3">Base experience:</p>
+                            <p>{{ pokemon.base_experience }}</p>
+                        </div>
+                        <div class="f-d-flex-center">
+                            <p class="pe-3">Weight:</p>
+                            <p>{{ pokemon.weight }}</p>
+                        </div>
+                        <div class="f-d-flex-center">
+                            <p class="pe-3">Type:</p>
                             <span v-for="type in pokemon.types" :key="type.type.name">
                                 {{ type.type.name }}
                             </span>
-                        </p>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -310,6 +321,11 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.f-d-flex-around {
+    display: flex;
+    justify-content: space-around;
 }
 
 .f-d-main-rectangle {
