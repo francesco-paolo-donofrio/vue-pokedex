@@ -118,7 +118,8 @@
 </template>
 
 <script>
-import { store } from '../store.js'
+import { store } from '../store.js';
+import axios from 'axios';
 export default {
     name: 'PokedexComponent',
 
@@ -127,6 +128,9 @@ export default {
         return {
             store,
         }
+    },
+    methods: {
+
     }
 }
 </script>
