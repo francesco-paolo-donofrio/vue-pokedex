@@ -127,15 +127,56 @@ export default {
     data() {
         return {
             store,
+            pokemonList: [],
         }
     },
-    methods: {
 
+    mounted() {
+        this.getPokemon();
+    },
+
+    methods: {
+        async getPokemon() {
+            try {
+                const response = await axios.get('https://pokeapi.co/api/v2/pokemon?');
+                this.pokemonList = response.data.results;
+            } catch (error) {
+                console.error('Errore nella call API:', error);
+            }
+        },
     }
 }
 </script>
 
 <style lang="scss" scoped>
+// Colors
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: rgb(206, 206, 7);
+}
+
+.green {
+    background-color: rgb(9, 53, 50);
+}
+
+.blue {
+    background-color: blue;
+}
+
+.white {
+    background-color: white;
+}
+
+.aqua {
+    background-color: aqua;
+}
+
+//////////////
+
 // Left side of the pokedex
 
 .pokedex-border-side-left {
@@ -163,7 +204,7 @@ export default {
     background-color: #740a26;
     border-bottom-left-radius: 5px;
     clip-path: polygon(0 0, 0 100%, 30% 100%, 70% 20%, 100% 20%, 100% 0);
-    // formula per smorzare i bordi del clip path polygon da vedere bene
+    // formula per smorzare i bordi di una forma geometrica -  clip path polygon
     // clip-path: inset(30% 100%, 70% 20% round 50%)
     display: flex;
     align-items: start;
@@ -209,7 +250,6 @@ export default {
     width: 30px;
     border-radius: 50%;
     border: 3px solid black;
-    background-color: rgb(12, 182, 214);
     margin: 10px;
 }
 
@@ -221,30 +261,6 @@ export default {
     position: relative;
     top: 5px;
     left: 5px;
-}
-
-.red {
-    background-color: red;
-}
-
-.yellow {
-    background-color: rgb(206, 206, 7);
-}
-
-.green {
-    background-color: rgb(9, 53, 50);
-}
-
-.blue {
-    background-color: blue;
-}
-
-.white {
-    background-color: white;
-}
-
-.aqua {
-    background-color: aqua;
 }
 
 .f-d-flex-right {
