@@ -34,7 +34,7 @@
                         <button class="f-d-search-button" @click="searchPokemon">
                             <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
                         </button>
-                        <div class="f-d-add-button" @click="addPokemonToList">
+                        <div class="f-d-add-button">
                             Add 
                         </div>
                         <div class="f-d-remove-button" @click="clearSearch">
@@ -67,7 +67,9 @@
                         <div class="f-d-orizzontal-bars blue"></div>
                     </div>
                     <div class="f-d-60-height">
-                        <div class="f-d-green-rectangle"></div>
+                        <div class="f-d-green-rectangle">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="f-d-35-container">
@@ -136,6 +138,7 @@
 </template>
 
 <script>
+
 import { store } from '../store.js';
 import axios from 'axios';
 export default {
@@ -188,15 +191,6 @@ export default {
                 this.selectedPokemon = null; // Reset se non trovato
             }
         },
-
-        addPokemonToList() {
-        if (this.selectedPokemon) {
-            this.store.pokemonCollection.push(this.selectedPokemon);  // Aggiunge il Pokémon selezionato alla lista
-            alert(`${this.selectedPokemon.name} è stato aggiunto alla tua lista!`);
-        } else {
-            alert('Nessun Pokémon selezionato!');
-        }
-    },
 
         clearSearch() {
             this.searchQuery = '';
