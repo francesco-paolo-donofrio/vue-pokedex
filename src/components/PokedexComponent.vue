@@ -30,12 +30,13 @@
             <div class="f-d-main-rectangle-border-relative">
                 <div>
                     <div class="f-d-search-container f-d-flex-between">
-                        <input type="text" v-model="searchQuery" class="f-d-search-input" placeholder="Search..." @input="searchPokemon">
+                        <input type="text" v-model="searchQuery" class="f-d-search-input" placeholder="Search..."
+                            @input="searchPokemon">
                         <button class="f-d-search-button" @click="searchPokemon">
                             <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
                         </button>
                         <div class="f-d-add-button">
-                            Add 
+                            Add
                         </div>
                         <div class="f-d-remove-button" @click="clearSearch">
                             Omit
@@ -47,8 +48,10 @@
                         <div class="f-d-animated-rectangle">
                             <!-- Mostra l'immagine del Pokémon cercato -->
                             <p v-if="selectedPokemon" class="f-d-pokemon-animation">
-                                <img :src="selectedPokemon.sprites.front_default" :alt="selectedPokemon.name" class="front-image">
-                                <img :src="selectedPokemon.sprites.back_default" :alt="selectedPokemon.name" class="back-image">
+                                <img :src="selectedPokemon.sprites.front_default" :alt="selectedPokemon.name"
+                                    class="front-image">
+                                <img :src="selectedPokemon.sprites.back_default" :alt="selectedPokemon.name"
+                                    class="back-image">
                             </p>
                         </div>
                     </div>
@@ -68,7 +71,7 @@
                     </div>
                     <div class="f-d-60-height">
                         <div class="f-d-green-rectangle">
-                            
+                            {{ store.lastAddedPokemon }}
                         </div>
                     </div>
                 </div>
@@ -150,8 +153,8 @@ export default {
             store,
             pokemonList: [],
             pokemonDetails: [],
-            searchQuery: '',       
-            selectedPokemon: null,  
+            searchQuery: '',
+            selectedPokemon: null,
         }
     },
 
@@ -190,6 +193,10 @@ export default {
             } else {
                 this.selectedPokemon = null; // Reset se non trovato
             }
+        },
+        addPokemon(pokemon) {
+            store.pokemonList.push(pokemon);
+            store.lastAddedPokemon = pokemon.name; // Aggiorni il nome dell'ultimo Pokémon aggiunto
         },
 
         clearSearch() {
@@ -704,7 +711,8 @@ export default {
         object-fit: contain;
     }
 
-    .front-image, .back-image {
+    .front-image,
+    .back-image {
         animation: fadeAnimation 6s infinite;
         opacity: 0;
         transition: opacity 1s ease-in-out;
@@ -715,15 +723,19 @@ export default {
     }
 
     .back-image {
-        animation-delay: 3s;  // Si alterna ogni 3 secondi
+        animation-delay: 3s; // Si alterna ogni 3 secondi
     }
 }
 
 @keyframes fadeAnimation {
-    0%, 50% {
+
+    0%,
+    50% {
         opacity: 1;
     }
-    50.01%, 100% {
+
+    50.01%,
+    100% {
         opacity: 0;
     }
 }
