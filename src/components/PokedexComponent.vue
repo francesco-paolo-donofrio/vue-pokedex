@@ -30,36 +30,23 @@
             <div class="f-d-main-rectangle-border-relative">
                 <div>
                     <div class="f-d-search-container f-d-flex-between">
-                        <input type="text" class="f-d-search-input" placeholder="Search...">
-                        <button class="f-d-search-button">
+                        <input type="text" v-model="searchQuery" class="f-d-search-input" placeholder="Search..." @input="searchPokemon">
+                        <button class="f-d-search-button" @click="searchPokemon">
                             <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
                         </button>
-                        <div class="f-d-remove-button">
+                        <div class="f-d-remove-button" @click="clearSearch">
                             Remove
                         </div>
                     </div>
                 </div>
                 <div class="f-d-flex">
                     <div class="f-d-main-rectangle">
-                        <div class="f-d-flex">
-                            <div class="f-d-smaller-circle"></div>
-                            <div class="f-d-smaller-circle"></div>
-                        </div>
                         <div class="f-d-animated-rectangle">
-                            <div v-for="pokemon in pokemonDetails" :key="pokemon.name">
-                                <p v-for="sprite in pokemon.sprites" :key="sprite.sprite.front_default">
-                                    <img :src="sprite.sprite.front_default" :alt="pokemon.front_default">
-                                </p>
-                            </div>
-                        </div>
-                        <div class="f-d-flex">
-                            <div class="f-d-animated-circle"></div>
-                            <div>
-                                <div class="f-d-black-bars"></div>
-                                <div class="f-d-black-bars"></div>
-                                <div class="f-d-black-bars"></div>
-                                <div class="f-d-black-bars"></div>
-                            </div>
+                            <!-- Mostra l'immagine del Pokémon cercato -->
+                            <p v-if="selectedPokemon" class="f-d-pokemon-animation">
+                                <img :src="selectedPokemon.sprites.front_default" :alt="selectedPokemon.name" class="front-image">
+                                <img :src="selectedPokemon.sprites.back_default" :alt="selectedPokemon.name" class="back-image">
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -90,24 +77,24 @@
         <div class="pokedex-border-side-right">
             <div>ciao</div>
             <div class="f-d-great-rectangle green mt-5">
-                <ul class="f-d-list-style">
-                    <li v-for="pokemon in pokemonDetails" :key="pokemon.name">
-                        <h2 class="f-d-text-title">{{ pokemon.name }}</h2>
+                <ul class="f-d-list-style" v-if="selectedPokemon">
+                    <li>
+                        <h2 class="f-d-text-title">{{ selectedPokemon.name }}</h2>
                         <div class="f-d-flex-center">
                             <p class="pe-3">Height:</p>
-                            <p>{{ pokemon.height }}</p>
+                            <p>{{ selectedPokemon.height }}</p>
                         </div>
                         <div class="f-d-flex-center">
                             <p class="pe-3">Base experience:</p>
-                            <p>{{ pokemon.base_experience }}</p>
+                            <p>{{ selectedPokemon.base_experience }}</p>
                         </div>
                         <div class="f-d-flex-center">
                             <p class="pe-3">Weight:</p>
-                            <p>{{ pokemon.weight }}</p>
+                            <p>{{ selectedPokemon.weight }}</p>
                         </div>
                         <div class="f-d-flex-center">
                             <p class="pe-3">Type:</p>
-                            <span v-for="type in pokemon.types" :key="type.type.name">
+                            <span v-for="type in selectedPokemon.types" :key="type.type.name">
                                 {{ type.type.name }}
                             </span>
                         </div>
@@ -157,6 +144,8 @@ export default {
             store,
             pokemonList: [],
             pokemonDetails: [],
+            searchQuery: '',       
+            selectedPokemon: null,  
         }
     },
 
@@ -182,6 +171,25 @@ export default {
                 console.error('Errore nella chiamata API:', error);
             }
         },
+        searchPokemon() {
+            const searchQueryLower = this.searchQuery.toLowerCase();
+
+            // Cerca il Pokémon per nome
+            const foundPokemon = this.pokemonDetails.find(pokemon =>
+                pokemon.name.toLowerCase() === searchQueryLower
+            );
+
+            if (foundPokemon) {
+                this.selectedPokemon = foundPokemon; // Imposta il Pokémon selezionato
+            } else {
+                this.selectedPokemon = null; // Reset se non trovato
+            }
+        },
+
+        clearSearch() {
+            this.searchQuery = '';
+            this.selectedPokemon = null;
+        }
     }
 }
 </script>
@@ -373,6 +381,9 @@ export default {
     border: 3px solid black;
     background-color: aqua;
     border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .f-d-black-bars {
@@ -652,5 +663,47 @@ export default {
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
+}
+
+// Animation img pokemon
+
+.f-d-pokemon-animation {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .front-image, .back-image {
+        animation: fadeAnimation 6s infinite;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .front-image {
+        animation-delay: 0s;
+    }
+
+    .back-image {
+        animation-delay: 3s;  // Si alterna ogni 3 secondi
+    }
+}
+
+@keyframes fadeAnimation {
+    0%, 50% {
+        opacity: 1;
+    }
+    50.01%, 100% {
+        opacity: 0;
+    }
 }
 </style>
