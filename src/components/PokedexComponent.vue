@@ -34,8 +34,11 @@
                         <button class="f-d-search-button" @click="searchPokemon">
                             <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
                         </button>
+                        <div class="f-d-add-button" @click="addPokemonToList">
+                            Add 
+                        </div>
                         <div class="f-d-remove-button" @click="clearSearch">
-                            Remove
+                            Omit
                         </div>
                     </div>
                 </div>
@@ -185,6 +188,15 @@ export default {
                 this.selectedPokemon = null; // Reset se non trovato
             }
         },
+
+        addPokemonToList() {
+        if (this.selectedPokemon) {
+            this.store.pokemonCollection.push(this.selectedPokemon);  // Aggiunge il Pokémon selezionato alla lista
+            alert(`${this.selectedPokemon.name} è stato aggiunto alla tua lista!`);
+        } else {
+            alert('Nessun Pokémon selezionato!');
+        }
+    },
 
         clearSearch() {
             this.searchQuery = '';
@@ -563,6 +575,21 @@ export default {
 .f-d-search-button img {
     width: 20px;
     height: 20px;
+}
+
+.f-d-add-button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    border: 3px solid black;
+    width: 150px;
+    height: 45px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .f-d-remove-button {
