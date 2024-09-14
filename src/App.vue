@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import store from './store.js'
+import { store } from './store.js'
 import PokedexComponent from './components/PokedexComponent.vue'
 export default {
   name: 'App',
