@@ -71,6 +71,7 @@
                     </div>
                     <div class="f-d-60-height">
                         <div class="f-d-green-rectangle">
+                            <p class="f-d-text-title">My pokemon</p>
                             <div id="carouselExample" class="carousel slide">
                                 <div class="carousel-inner">
                                     <div class="carousel-item" v-for="(pokemon, index) in addedPokemons"
@@ -181,14 +182,20 @@ export default {
                 backgroundImage: `url('../../public/img/images.jfif')`
             },
             addedPokemons: [],
+            carouselInstance: null
         }
     },
     mounted() {
         this.getPokemon();
         this.loadSavedPokemons();
+        this.$nextTick(() => {
+            this.initializeCarousel();
+        });
     },
     updated() {
-        this.initializeCarousel();
+        this.$nextTick(() => {
+            this.updateCarousel();
+        });
     },
     methods: {
         async getPokemon() {
@@ -211,10 +218,8 @@ export default {
                 this.addedPokemons.push(this.selectedPokemon);
                 localStorage.setItem('savedPokemons', JSON.stringify(this.addedPokemons));
                 store.lastAddedPokemon = this.selectedPokemon.name;
-
-                // Forza l'aggiornamento del carosello
                 this.$nextTick(() => {
-                    this.initializeCarousel();
+                    this.updateCarousel();
                 });
             }
         },
@@ -252,6 +257,12 @@ export default {
                     });
                 }
             }
+        },
+        updateCarousel() {
+            if (this.carouselInstance) {
+                this.carouselInstance.dispose();
+            }
+            this.initializeCarousel();
         }
     }
 }
@@ -528,7 +539,7 @@ export default {
 }
 
 .f-d-60-height {
-    height: 50%;
+    height: 70%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -542,6 +553,10 @@ export default {
     background-color: rgb(98, 198, 134);
     border-radius: 10px;
     margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .f-d-circle-black {
