@@ -35,11 +35,8 @@
                         <button class="f-d-search-button" @click="searchPokemon">
                             <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
                         </button>
-                        <div class="f-d-add-button" @click="addPokemon">
-                            Add
-                        </div>
                         <div class="f-d-remove-button" @click="clearSearch">
-                            Omit
+                            Reset
                         </div>
                     </div>
                 </div>
@@ -66,8 +63,8 @@
                         <div class="f-d-circle-black">
                             <div class="f-d-circle-black-absolute"></div>
                         </div>
-                        <div class="f-d-orizzontal-bars red d-flex justify-content-center align-items-center fw-bold" @click="removePokemon(index)">Remove</div>
-                        <div class="f-d-orizzontal-bars blue"></div>
+                        <div class="f-d-orizzontal-bars red d-flex justify-content-center align-items-center fw-bold text-uppercase" @click="removePokemon(index)">Remove</div>
+                        <div class="f-d-orizzontal-bars blue f-d-add-button d-flex justify-content-center align-items-center fw-bold text-uppercase text-white" @click="addPokemon">Add</div>
                     </div>
                     <div class="f-d-60-height">
                         <div class="f-d-green-rectangle">
@@ -609,6 +606,7 @@ export default {
     height: 20px;
     border: 3px solid black;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .f-d-cross-polygon {
@@ -667,18 +665,7 @@ export default {
 }
 
 .f-d-add-button {
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    border: 3px solid black;
-    width: 150px;
-    height: 45px;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-    font-weight: bold;
+    
 }
 
 .f-d-remove-button {
