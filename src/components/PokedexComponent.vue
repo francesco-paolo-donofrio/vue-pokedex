@@ -71,15 +71,15 @@
                     </div>
                     <div class="f-d-60-height">
                         <div class="f-d-green-rectangle">
-                            <p class="f-d-text-title">My pokemon</p>
                             <div id="carouselExample" class="carousel slide">
-                                <div class="carousel-inner">
+                                <div class="carousel-inner mt-2">
                                     <div class="carousel-item" v-for="(pokemon, index) in addedPokemons"
-                                        :key="pokemon.id" :class="{ 'active': index === 0 }">
-                                        <img :src="pokemon.sprites.front_default" class="f-d-img-carousel"
-                                            :alt="pokemon.name">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>{{ pokemon.name }}</h5>
+                                    :key="pokemon.id" :class="{ 'active': index === 0 }">
+                                    <img :src="pokemon.sprites.front_default" class="f-d-img-carousel"
+                                    :alt="pokemon.name">
+                                    <div class="carousel-caption d-none d-md-block">
+                                            <p class="f-d-text-title ">My pokemon</p>
+                                            <h5 class="text-white fw-bold text-uppercase ms-5">{{ pokemon.name }}</h5>
                                         </div>
                                     </div>
                                 </div>
