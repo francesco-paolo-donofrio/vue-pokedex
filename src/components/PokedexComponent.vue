@@ -74,11 +74,11 @@
                             <div id="carouselExample" class="carousel slide">
                                 <div class="carousel-inner mt-2">
                                     <div class="carousel-item" v-for="(pokemon, index) in addedPokemons"
-                                    :key="pokemon.id" :class="{ 'active': index === 0 }">
-                                    <img :src="pokemon.sprites.front_default" class="f-d-img-carousel"
-                                    :alt="pokemon.name">
-                                    <div class="carousel-caption d-none d-md-block">
-                                            <p class="f-d-text-title ">My pokemon</p>
+                                        :key="pokemon.id" :class="{ 'active': index === 0 }">
+                                        <img :src="pokemon.sprites.front_default" class="f-d-img-carousel"
+                                            :alt="pokemon.name">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <p class="f-d-text-title ">My Pokémon</p>
                                             <h5 class="text-white fw-bold text-uppercase ms-5">{{ pokemon.name }}</h5>
                                         </div>
                                     </div>
@@ -214,13 +214,21 @@ export default {
             this.addedPokemons = savedPokemons;
         },
         savePokemon() {
-            if (this.selectedPokemon && !this.addedPokemons.some(p => p.id === this.selectedPokemon.id)) {
+            if (!this.selectedPokemon) {
+                console.log("Nessun Pokémon selezionato.");
+                return;
+            }
+
+            if (!this.addedPokemons.some(p => p.id === this.selectedPokemon.id)) {
                 this.addedPokemons.push(this.selectedPokemon);
                 localStorage.setItem('savedPokemons', JSON.stringify(this.addedPokemons));
                 store.lastAddedPokemon = this.selectedPokemon.name;
+
                 this.$nextTick(() => {
-                    this.updateCarousel();
+                    this.updateCarousel();  // Aggiorna il carosello quando il DOM è stato aggiornato
                 });
+            } else {
+                console.log("Questo Pokémon è già stato aggiunto.");
             }
         },
         searchPokemon() {
@@ -247,23 +255,25 @@ export default {
             this.backgroundStyle.backgroundImage = `url('${this.imageWood}')`;
         },
         initializeCarousel() {
-            // Inizializza o aggiorna il carosello
-            if (typeof bootstrap !== 'undefined') {
-                const carouselElement = document.getElementById('carouselExample');
-                if (carouselElement) {
-                    const carousel = new bootstrap.Carousel(carouselElement, {
-                        interval: 2000,
-                        wrap: true
-                    });
-                }
+            const carouselElement = document.getElementById('carouselExample');
+            if (carouselElement) {
+                this.carouselInstance = new bootstrap.Carousel(carouselElement, {
+                    interval: 2000,
+                    wrap: true
+                });
             }
         },
         updateCarousel() {
+            // Rimuove l'istanza precedente del carosello, se esiste
             if (this.carouselInstance) {
                 this.carouselInstance.dispose();
             }
-            this.initializeCarousel();
-        }
+
+            // Inizializza di nuovo il carosello con il nuovo elenco
+            this.$nextTick(() => {
+                this.initializeCarousel();
+            });
+        },
     }
 }
 </script>
