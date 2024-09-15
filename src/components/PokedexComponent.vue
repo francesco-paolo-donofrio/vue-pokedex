@@ -155,6 +155,8 @@ export default {
             pokemonDetails: [],
             searchQuery: '',
             selectedPokemon: null,
+            imageAppearPokemon: ('../../public/img/pokemon.avif'),
+            imageWood: ('../../public/img/images.jfif')
         }
     },
 
@@ -190,6 +192,9 @@ export default {
 
             if (foundPokemon) {
                 this.selectedPokemon = foundPokemon; // Imposta il Pokémon selezionato
+                document.querySelector('.f-d-animated-rectangle');
+                
+
             } else {
                 this.selectedPokemon = null; // Reset se non trovato
             }
@@ -354,10 +359,7 @@ export default {
     width: 85%;
     background-color: white;
     border: 3px solid black;
-    clip-path: polygon(0 0, 0 80%, 20% 100%, 80% 100%, 100% 100%, 100% 0);
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 20px;
     margin-bottom: 20px;
     position: relative;
     z-index: 1;
@@ -376,10 +378,7 @@ export default {
     width: 100%;
     background-color: transparent;
     border: 6px solid black;
-    clip-path: polygon(0 0, 0 80%, 20% 100%, 80% 100%, 100% 100%, 100% 0);
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 20px;
     z-index: -1;
 }
 
@@ -392,7 +391,9 @@ export default {
     height: 300px;
     width: 80%;
     border: 3px solid black;
-    background-color: aqua;
+    background-image: url(../../public/img/images.jfif);
+    background-size: cover;
+    background-position: center;
     border-radius: 20px;
     display: flex;
     align-items: center;
