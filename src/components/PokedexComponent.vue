@@ -35,7 +35,7 @@
                         <button class="f-d-search-button" @click="searchPokemon">
                             <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="Search">
                         </button>
-                        <div class="f-d-add-button">
+                        <div class="f-d-add-button" @click="addPokemon">
                             Add
                         </div>
                         <div class="f-d-remove-button" @click="clearSearch">
@@ -71,7 +71,28 @@
                     </div>
                     <div class="f-d-60-height">
                         <div class="f-d-green-rectangle">
-                            {{ store.lastAddedPokemon }}
+                            <div id="carouselExample" class="carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item" v-for="(pokemon, index) in addedPokemons" :key="index"
+                                        :class="{ 'active': index === 0 }">
+                                        <img :src="pokemon.sprites.front_default" class="d-block w-100"
+                                            :alt="pokemon.name">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>{{ pokemon.name }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -158,8 +179,9 @@ export default {
             imageAppearPokemon: ('../../public/img/pokemon.avif'),
             imageWood: ('../../public/img/images.jfif'),
             backgroundStyle: { // Nuova proprietà per cambiare il background dinamicamente
-            backgroundImage: `url('../../public/img/images.jfif')`
-        }
+                backgroundImage: `url('../../public/img/images.jfif')`
+            },
+            addedPokemons: []
         }
     },
 
@@ -194,18 +216,23 @@ export default {
             );
             // Imposta il Pokémon selezionato e cambia il background
             if (foundPokemon) {
-                this.selectedPokemon = foundPokemon; 
+                this.selectedPokemon = foundPokemon;
                 this.backgroundStyle.backgroundImage = `url('${this.imageAppearPokemon}')`;
             } else {
-            // Reset se non trovato
-                this.selectedPokemon = null; 
+                // Reset se non trovato
+                this.selectedPokemon = null;
                 this.backgroundStyle.backgroundImage = `url('${this.imageWood}')`;
             }
         },
-        addPokemon(pokemon) {
-            store.pokemonList.push(pokemon);
-            store.lastAddedPokemon = pokemon.name; 
-        },
+        addPokemon() {
+        if (this.selectedPokemon) {
+            // Aggiungi il Pokémon selezionato alla lista dei Pokémon nel carosello
+            this.addedPokemons.push(this.selectedPokemon);
+            
+            // Aggiorna il nome dell'ultimo Pokémon aggiunto nello store
+            store.lastAddedPokemon = this.selectedPokemon.name; 
+        }
+    },
 
         clearSearch() {
             this.searchQuery = '';
