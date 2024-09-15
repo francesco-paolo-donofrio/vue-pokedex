@@ -66,7 +66,7 @@
                         <div class="f-d-circle-black">
                             <div class="f-d-circle-black-absolute"></div>
                         </div>
-                        <div class="f-d-orizzontal-bars red"></div>
+                        <div class="f-d-orizzontal-bars red d-flex justify-content-center align-items-center fw-bold" @click="removePokemon(index)">Remove</div>
                         <div class="f-d-orizzontal-bars blue"></div>
                     </div>
                     <div class="f-d-60-height">
@@ -279,6 +279,18 @@ export default {
                 this.initializeCarousel();
             });
         },
+        removePokemon(index) {
+        // Rimuovi il Pokémon dall'array `addedPokemons`
+        this.addedPokemons.splice(index, 1);
+
+        // Aggiorna il localStorage per mantenere i Pokémon aggiornati
+        localStorage.setItem('savedPokemons', JSON.stringify(this.addedPokemons));
+
+        // Aggiorna il carosello dopo aver rimosso il Pokémon
+        this.$nextTick(() => {
+            this.updateCarousel();
+        });
+    }
     }
 }
 </script>
