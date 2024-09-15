@@ -45,7 +45,7 @@
                 </div>
                 <div class="f-d-flex">
                     <div class="f-d-main-rectangle">
-                        <div class="f-d-animated-rectangle">
+                        <div class="f-d-animated-rectangle" :style="backgroundStyle">
                             <!-- Mostra l'immagine del Pokémon cercato -->
                             <p v-if="selectedPokemon" class="f-d-pokemon-animation">
                                 <img :src="selectedPokemon.sprites.front_default" :alt="selectedPokemon.name"
@@ -156,7 +156,10 @@ export default {
             searchQuery: '',
             selectedPokemon: null,
             imageAppearPokemon: ('../../public/img/pokemon.avif'),
-            imageWood: ('../../public/img/images.jfif')
+            imageWood: ('../../public/img/images.jfif'),
+            backgroundStyle: { // Nuova proprietà per cambiare il background dinamicamente
+            backgroundImage: `url('../../public/img/images.jfif')`
+        }
         }
     },
 
@@ -189,24 +192,25 @@ export default {
             const foundPokemon = this.pokemonDetails.find(pokemon =>
                 pokemon.name.toLowerCase() === searchQueryLower
             );
-
+            // Imposta il Pokémon selezionato e cambia il background
             if (foundPokemon) {
-                this.selectedPokemon = foundPokemon; // Imposta il Pokémon selezionato
-                document.querySelector('.f-d-animated-rectangle');
-                
-
+                this.selectedPokemon = foundPokemon; 
+                this.backgroundStyle.backgroundImage = `url('${this.imageAppearPokemon}')`;
             } else {
-                this.selectedPokemon = null; // Reset se non trovato
+            // Reset se non trovato
+                this.selectedPokemon = null; 
+                this.backgroundStyle.backgroundImage = `url('${this.imageWood}')`;
             }
         },
         addPokemon(pokemon) {
             store.pokemonList.push(pokemon);
-            store.lastAddedPokemon = pokemon.name; // Aggiorni il nome dell'ultimo Pokémon aggiunto
+            store.lastAddedPokemon = pokemon.name; 
         },
 
         clearSearch() {
             this.searchQuery = '';
             this.selectedPokemon = null;
+            this.backgroundStyle.backgroundImage = `url('${this.imageWood}')`;
         }
     }
 }
