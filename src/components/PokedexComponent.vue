@@ -75,8 +75,6 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item" v-for="(pokemon, index) in addedPokemons" :key="index"
                                         :class="{ 'active': index === 0 }">
-                                        <img :src="pokemon.sprites.front_default" class="d-block w-100"
-                                            :alt="pokemon.name">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>{{ pokemon.name }}</h5>
                                         </div>
