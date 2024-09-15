@@ -247,6 +247,11 @@ export default {
         addPokemon() {
             if (this.selectedPokemon) {
                 this.savePokemon();
+                const addedPokemonElement = document.querySelector('.f-d-add-button');
+                addedPokemonElement.classList.add('added-pokemon-animation');
+                setTimeout(() => {
+                    addedPokemonElement.classList.remove('added-pokemon-animation');
+                }, 500);
             }
         },
         clearSearch() {
@@ -820,6 +825,24 @@ export default {
     100% {
         opacity: 0;
     }
+}
+
+// Animation add button pokemon 
+
+@keyframes addPokemonAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.added-pokemon-animation {
+    animation: addPokemonAnimation 0.5s ease-in-out;
 }
 
 // carousel
