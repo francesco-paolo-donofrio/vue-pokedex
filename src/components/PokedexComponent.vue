@@ -79,7 +79,7 @@
                                             :alt="pokemon.name">
                                         <div class="carousel-caption d-none d-md-block">
                                             <p class="f-d-text-title ">My Pokémon</p>
-                                            <h5 class="text-white fw-bold text-uppercase ms-5">{{ pokemon.name }}</h5>
+                                            <h6 class="text-white fw-bold text-uppercase ms-5">{{ pokemon.name }}</h6>
                                         </div>
                                     </div>
                                 </div>
