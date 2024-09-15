@@ -641,10 +641,10 @@ export default {
 
 .f-d-great-rectangle {
     width: 80%;
-    height: 35%;
+    height: 30%;
     border: 3px solid black;
     border-radius: 10px;
-    overflow: auto;
+    overflow: hidden;
     color: white;
 }
 
@@ -690,6 +690,8 @@ export default {
 
 .f-d-list-style {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .f-d-text-title {
