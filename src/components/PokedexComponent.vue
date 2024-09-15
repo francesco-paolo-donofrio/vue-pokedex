@@ -75,9 +75,11 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item" v-for="(pokemon, index) in addedPokemons" :key="index"
                                         :class="{ 'active': index === 0 }">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>{{ pokemon.name }}</h5>
-                                        </div>
+                                        <img :src="pokemon.sprites.front_default" class="d-block w-100"
+                                            :alt="pokemon.name">
+                                        <span class="carousel-caption d-none d-md-block">
+                                            <span>{{ pokemon.name }}</span>
+                                        </span>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -179,12 +181,17 @@ export default {
             backgroundStyle: { // Nuova proprietà per cambiare il background dinamicamente
                 backgroundImage: `url('../../public/img/images.jfif')`
             },
-            addedPokemons: []
+            addedPokemons: [],
+            savedPokemons: []
         }
     },
 
     mounted() {
         this.getPokemon();
+        const savedPokemons = JSON.parse(localStorage.getItem('savedPokemons'));
+        if (savedPokemons) {
+            this.savedPokemons = savedPokemons;
+        }
     },
 
     methods: {
@@ -205,6 +212,12 @@ export default {
                 console.error('Errore nella chiamata API:', error);
             }
         },
+        savePokemon(pokemonName) {
+            if (pokemonName && !this.savedPokemons.includes(pokemonName)) {
+                this.savedPokemons.push(pokemonName);
+                localStorage.setItem('savedPokemons', JSON.stringify(this.savedPokemons));
+            }
+        },
         searchPokemon() {
             const searchQueryLower = this.searchQuery.toLowerCase();
 
@@ -223,14 +236,14 @@ export default {
             }
         },
         addPokemon() {
-        if (this.selectedPokemon) {
-            // Aggiungi il Pokémon selezionato alla lista dei Pokémon nel carosello
-            this.addedPokemons.push(this.selectedPokemon);
-            
-            // Aggiorna il nome dell'ultimo Pokémon aggiunto nello store
-            store.lastAddedPokemon = this.selectedPokemon.name; 
-        }
-    },
+            if (this.selectedPokemon) {
+                // Aggiungi il Pokémon selezionato alla lista dei Pokémon nel carosello
+                this.addedPokemons.push(this.selectedPokemon);
+
+                // Aggiorna il nome dell'ultimo Pokémon aggiunto nello store
+                store.lastAddedPokemon = this.selectedPokemon.name;
+            }
+        },
 
         clearSearch() {
             this.searchQuery = '';
@@ -709,6 +722,15 @@ export default {
     width: 70px;
     height: 70px;
     border-radius: 5px;
+}
+
+#carouselExample {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 // Text styles
