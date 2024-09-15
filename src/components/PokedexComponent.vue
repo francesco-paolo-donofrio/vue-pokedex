@@ -73,13 +73,13 @@
                         <div class="f-d-green-rectangle">
                             <div id="carouselExample" class="carousel slide">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item" v-for="(pokemon, index) in addedPokemons" :key="index"
-                                        :class="{ 'active': index === 0 }">
-                                        <img :src="pokemon.sprites.front_default" class="d-block w-100"
+                                    <div class="carousel-item" v-for="(pokemon, index) in addedPokemons"
+                                        :key="pokemon.id" :class="{ 'active': index === 0 }">
+                                        <img :src="pokemon.sprites.front_default" class="f-d-img-carousel"
                                             :alt="pokemon.name">
-                                        <span class="carousel-caption d-none d-md-block">
-                                            <span>{{ pokemon.name }}</span>
-                                        </span>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>{{ pokemon.name }}</h5>
+                                        </div>
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -165,10 +165,9 @@
 
 import { store } from '../store.js';
 import axios from 'axios';
+
 export default {
     name: 'PokedexComponent',
-
-
     data() {
         return {
             store,
@@ -178,77 +177,81 @@ export default {
             selectedPokemon: null,
             imageAppearPokemon: ('../../public/img/pokemon.avif'),
             imageWood: ('../../public/img/images.jfif'),
-            backgroundStyle: { // Nuova proprietà per cambiare il background dinamicamente
+            backgroundStyle: {
                 backgroundImage: `url('../../public/img/images.jfif')`
             },
             addedPokemons: [],
-            savedPokemons: []
         }
     },
-
     mounted() {
         this.getPokemon();
-        const savedPokemons = JSON.parse(localStorage.getItem('savedPokemons'));
-        if (savedPokemons) {
-            this.savedPokemons = savedPokemons;
-        }
+        this.loadSavedPokemons();
     },
-
+    updated() {
+        this.initializeCarousel();
+    },
     methods: {
         async getPokemon() {
             try {
-
-                // Prima chiamata per ottenere i Pokémon
                 const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
                 this.pokemonList = response.data.results;
-
-                // Seconda chiamata per ottenere i dettagli di ciascun Pokémon
-                const detailRequests = this.pokemonList.map(pokemon =>
-                    axios.get(pokemon.url)
-                );
+                const detailRequests = this.pokemonList.map(pokemon => axios.get(pokemon.url));
                 const details = await Promise.all(detailRequests);
-                this.pokemonDetails = details.map(res => res.data);  // Assegna i dati ottenuti dai dettagli
+                this.pokemonDetails = details.map(res => res.data);
             } catch (error) {
                 console.error('Errore nella chiamata API:', error);
             }
         },
-        savePokemon(pokemonName) {
-            if (pokemonName && !this.savedPokemons.includes(pokemonName)) {
-                this.savedPokemons.push(pokemonName);
-                localStorage.setItem('savedPokemons', JSON.stringify(this.savedPokemons));
+        loadSavedPokemons() {
+            const savedPokemons = JSON.parse(localStorage.getItem('savedPokemons')) || [];
+            this.addedPokemons = savedPokemons;
+        },
+        savePokemon() {
+            if (this.selectedPokemon && !this.addedPokemons.some(p => p.id === this.selectedPokemon.id)) {
+                this.addedPokemons.push(this.selectedPokemon);
+                localStorage.setItem('savedPokemons', JSON.stringify(this.addedPokemons));
+                store.lastAddedPokemon = this.selectedPokemon.name;
+
+                // Forza l'aggiornamento del carosello
+                this.$nextTick(() => {
+                    this.initializeCarousel();
+                });
             }
         },
         searchPokemon() {
             const searchQueryLower = this.searchQuery.toLowerCase();
-
-            // Cerca il Pokémon per nome
             const foundPokemon = this.pokemonDetails.find(pokemon =>
                 pokemon.name.toLowerCase() === searchQueryLower
             );
-            // Imposta il Pokémon selezionato e cambia il background
             if (foundPokemon) {
                 this.selectedPokemon = foundPokemon;
                 this.backgroundStyle.backgroundImage = `url('${this.imageAppearPokemon}')`;
             } else {
-                // Reset se non trovato
                 this.selectedPokemon = null;
                 this.backgroundStyle.backgroundImage = `url('${this.imageWood}')`;
             }
         },
         addPokemon() {
             if (this.selectedPokemon) {
-                // Aggiungi il Pokémon selezionato alla lista dei Pokémon nel carosello
-                this.addedPokemons.push(this.selectedPokemon);
-
-                // Aggiorna il nome dell'ultimo Pokémon aggiunto nello store
-                store.lastAddedPokemon = this.selectedPokemon.name;
+                this.savePokemon();
             }
         },
-
         clearSearch() {
             this.searchQuery = '';
             this.selectedPokemon = null;
             this.backgroundStyle.backgroundImage = `url('${this.imageWood}')`;
+        },
+        initializeCarousel() {
+            // Inizializza o aggiorna il carosello
+            if (typeof bootstrap !== 'undefined') {
+                const carouselElement = document.getElementById('carouselExample');
+                if (carouselElement) {
+                    const carousel = new bootstrap.Carousel(carouselElement, {
+                        interval: 2000,
+                        wrap: true
+                    });
+                }
+            }
         }
     }
 }
@@ -792,5 +795,14 @@ export default {
     100% {
         opacity: 0;
     }
+}
+
+// carousel
+
+.f-d-img-carousel {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    margin-right: 30px;
 }
 </style>
