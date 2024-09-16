@@ -176,7 +176,7 @@ export default {
             imageAppearPokemon: ('../../public/img/pokemon.avif'),
             imageWood: ('../../public/img/images.jfif'),
             backgroundStyle: {
-                backgroundImage: `url('../../public/img/images.jfif')`
+                backgroundImage: ('../../public/img/images.jfif')
             },
             addedPokemons: [],
             carouselInstance: null
@@ -235,10 +235,10 @@ export default {
             );
             if (foundPokemon) {
                 this.selectedPokemon = foundPokemon;
-                this.backgroundStyle.backgroundImage = `url('${this.imageAppearPokemon}')`;
+                this.backgroundStyle.backgroundImage = url('${this.imageAppearPokemon}');
             } else {
                 this.selectedPokemon = null;
-                this.backgroundStyle.backgroundImage = `url('${this.imageWood}')`;
+                this.backgroundStyle.backgroundImage = url('${this.imageWood}');
             }
         },
         addPokemon() {
@@ -254,7 +254,7 @@ export default {
         clearSearch() {
             this.searchQuery = '';
             this.selectedPokemon = null;
-            this.backgroundStyle.backgroundImage = `url('${this.imageWood}')`;
+            this.backgroundStyle.backgroundImage = url('${this.imageWood}');
         },
         initializeCarousel() {
             const carouselElement = document.getElementById('carouselExample');
@@ -277,7 +277,7 @@ export default {
             });
         },
         removePokemon(index) {
-        // Rimuovi il Pokémon dall'array `addedPokemons`
+        // Rimuovi il Pokémon dall'array addedPokemons
         this.addedPokemons.splice(index, 1);
 
         // Aggiorna il localStorage per mantenere i Pokémon aggiornati
@@ -662,10 +662,6 @@ export default {
 .f-d-search-button img {
     width: 20px;
     height: 20px;
-}
-
-.f-d-add-button {
-    
 }
 
 .f-d-remove-button {
